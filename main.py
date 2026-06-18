@@ -15,10 +15,13 @@ from rich.panel import Panel
 from rich.table import Table
 from rich import box
 <<<<<<< HEAD
+<<<<<<< HEAD
 try:
     import yaml
 except Exception:
     yaml = None
+=======
+>>>>>>> b4f0b28606631623f461d69b0cb8b00b578c85d3
 =======
 >>>>>>> b4f0b28606631623f461d69b0cb8b00b578c85d3
 
@@ -74,6 +77,7 @@ def gather_outputs(outdir: str):
     os.makedirs(outdir, exist_ok=True)
     for cmd, filename in COMMANDS:
         path = os.path.join(outdir, filename)
+<<<<<<< HEAD
 <<<<<<< HEAD
         # Run commands silently; outputs are written to files in outdir
         run_cmd(cmd, path)
@@ -215,10 +219,15 @@ def recommended_artifacts():
 
 
 =======
+=======
+>>>>>>> b4f0b28606631623f461d69b0cb8b00b578c85d3
         print(f"Running: {cmd} -> {filename}")
         run_cmd(cmd, path)
 
 
+<<<<<<< HEAD
+>>>>>>> b4f0b28606631623f461d69b0cb8b00b578c85d3
+=======
 >>>>>>> b4f0b28606631623f461d69b0cb8b00b578c85d3
 def make_archive(outdir: str):
     base_name = outdir
@@ -243,7 +252,10 @@ def write_report(outdir: str, archive_path: str | None, source: str | None, targ
         for fn in sorted(files):
             f.write(f"- {fn}\n")
 <<<<<<< HEAD
+<<<<<<< HEAD
         # (Node OS details intentionally omitted from report)
+=======
+>>>>>>> b4f0b28606631623f461d69b0cb8b00b578c85d3
 =======
 >>>>>>> b4f0b28606631623f461d69b0cb8b00b578c85d3
 
@@ -269,7 +281,11 @@ def main():
     banner.add_row('Source :', args.source or 'N/A')
     banner.add_row('Target :', args.target or 'N/A')
 <<<<<<< HEAD
+<<<<<<< HEAD
     banner.add_row('Analysis Engine:', 'OpenAI GPT-5')
+=======
+    banner.add_row('Model  :', model_name)
+>>>>>>> b4f0b28606631623f461d69b0cb8b00b578c85d3
 =======
     banner.add_row('Model  :', model_name)
 >>>>>>> b4f0b28606631623f461d69b0cb8b00b578c85d3
@@ -279,6 +295,7 @@ def main():
 
     console.rule('[green]Collecting cluster data')
     console.log(f'Gathering kubectl outputs into: {outdir}')
+<<<<<<< HEAD
 <<<<<<< HEAD
     with console.status('Collecting kubectl outputs (running quietly)...'):
         gather_outputs(outdir)
@@ -305,6 +322,11 @@ def main():
     console.log('Cluster data collected.')
 
 >>>>>>> b4f0b28606631623f461d69b0cb8b00b578c85d3
+=======
+    gather_outputs(outdir)
+    console.log('Cluster data collected.')
+
+>>>>>>> b4f0b28606631623f461d69b0cb8b00b578c85d3
     archive = None
     if not args.no_archive:
         archive = make_archive(outdir)
@@ -319,6 +341,7 @@ def main():
     except Exception as e:
         console.log(f'Failed to write collection summary: {e}')
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     # (Pre-upgrade Checklist panel removed per user request)
 
@@ -342,12 +365,16 @@ def main():
 =======
     console.rule('[blue]Running assessment')
 >>>>>>> b4f0b28606631623f461d69b0cb8b00b578c85d3
+=======
+    console.rule('[blue]Running assessment')
+>>>>>>> b4f0b28606631623f461d69b0cb8b00b578c85d3
     # run the fuller assessment pipeline (assessor package)
     try:
         from assessor import run_assessment
         findings = run_assessment(outdir, args.source, args.target, args.output)
         console.log(f'Assessment complete. Report: {args.output}')
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         # Present professional terminal summary matching requested format
         def print_professional_summary(findings):
@@ -464,6 +491,8 @@ def main():
 
         # End of assessment display
 =======
+=======
+>>>>>>> b4f0b28606631623f461d69b0cb8b00b578c85d3
         # Present concise professional summary in terminal
         summary_tbl = Table(title='Assessment Summary', box=box.MINIMAL)
         summary_tbl.add_column('Metric', no_wrap=True)
@@ -516,6 +545,9 @@ def main():
             )
 
         console.print(Panel(commentary, title='Analyst Commentary', style='magenta'))
+<<<<<<< HEAD
+>>>>>>> b4f0b28606631623f461d69b0cb8b00b578c85d3
+=======
 >>>>>>> b4f0b28606631623f461d69b0cb8b00b578c85d3
 
     except Exception as e:
